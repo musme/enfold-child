@@ -1,0 +1,299 @@
+/**
+ * Custom styles to immediately follow Tailwind’s `base` layer
+ *
+ * “Add things like base typography styles [or] opinionated global resets.”
+ *
+ * — from https://tailwindcss.com/docs/plugins#adding-base-styles
+ */
+
+/**
+ * This uses the background and foreground colors declared in the
+ * `theme.json` file and is applied both to the frontend and in the block
+ * editor.
+*/
+
+.form-robots__name {
+	border-top-left-radius: 25px;
+	border-top-right-radius: 25px;
+}
+
+.form-robots__name h2 {
+	color: #fff;
+	font-size: 22px;
+	font-family: "Verdana", sans-serif;
+	font-weight: 400;
+	font-style: normal;
+	text-align: center;
+	padding: 10px;
+	margin-bottom: 0;
+}
+
+.form-item .form-robots__name {
+	background: #079de8;
+}
+.form-item:nth-child(7n+1) .form-robots__name {
+	background: #079de8;
+}
+.form-item:nth-child(7n+2) .form-robots__name {
+	background: #f02128;
+}
+.form-item:nth-child(7n+3) .form-robots__name {
+	background: #2f2f2f;
+}
+.form-item:nth-child(7n+4) .form-robots__name {
+	background: #009f5b;
+}
+.form-item:nth-child(7n+5) .form-robots__name {
+	background: rgb(0, 153, 153);;
+}
+.form-item:nth-child(7n+6) .form-robots__name {
+	background: #2f2f2f;
+}
+.form-item:nth-child(7n+7) .form-robots__name {
+	background: #ecb744;
+}
+
+.form-robots__description {
+	margin-bottom: 20px;
+	border-bottom-left-radius: 25px;
+	border-bottom-right-radius: 25px;
+	border: 1px solid #888;
+	padding: 10px;
+	padding-top: 30px;
+	
+	font-family: "Verdana", sans-serif;
+	font-weight: 400;
+	font-style: normal;
+	font-size: 18px;
+	color: #303030;
+}
+
+.form-robots__img-link {
+	display: inline-block;
+	vertical-align: top;
+	width: 11%;
+	text-align: center;
+}
+.form-robots__img-link a {
+	color: #000;
+}
+.form-robots__img-link a:hover {
+	opacity: .9 !important;
+	color: #000;
+}
+.form-robots__img-link img {
+	height: 100px;
+}
+
+.form-robots__count {
+	display: inline-block;
+	vertical-align: top;
+	width: 10%;
+	margin-right: 30px;
+}
+
+.form-robots__count input, .form-robots__hours select, .form-robots__days input {
+	margin-top: 10px !important;
+	padding: 5px !important;
+}
+
+.form-robots__hours {
+	display: inline-block;
+	vertical-align: top;
+	width: 23%;
+	margin-right: 30px;
+}
+
+.form-robots__days {
+	display: inline-block;
+	vertical-align: top;
+	width: 8%;
+	margin-right: 30px;
+}
+
+.form-robots__price {
+	display: inline-block;
+	vertical-align: top;
+}
+
+.form-robots__price p {
+	margin-top: 0;
+	margin-bottom: 10px;
+}
+
+.form-robots__price .rent-price2 {
+	display: none;
+}
+
+.form-robots__price .buy-price2 {
+	display: none;
+}
+
+.form-robots__rent-buy {
+	font-size: 18px;
+}
+
+.all {
+	font-family: Verdana;
+	font-weight: 400;
+	font-style: normal;
+	font-size: 24px;
+	margin-top: 40px;
+}
+
+.form-robots__rent-buy p {
+	font-style: normal;
+	color: #303030;
+	line-height: 1.5;
+	font-size: 18px
+}
+
+.form-robots__rent {
+	display: inline-block;
+	vertical-align: top;
+	width: 30%;
+	margin-right: 3%;
+}
+
+.form-robots__buy {
+	display: inline-block;
+	vertical-align: top;
+	width: 30%;
+}
+
+.form-robots__main-form {
+	border: 1px solid #aaa;
+	padding: 10px;
+}
+
+.form-robots__main-form-top-name {
+	display: inline-block;
+	width: 32%;
+	margin-right: 1%;
+}
+.form-robots__main-form-top-name label {
+	font-family: Verdana;
+	font-weight: 400;
+	text-transform: uppercase;
+}
+.form-robots__main-form-top-name input {
+	border: 1px solid #c5c5c5 !important;
+	background: #ffffff !important;
+	color: #333333 !important;
+	padding: 10px !important;
+}
+
+.form-robots__main-form-top-phone {
+	display: inline-block;
+	width: 32%;
+	margin-right: 1%;
+}
+.form-robots__main-form-top-phone label {
+	font-family: Verdana;
+	font-weight: 400;
+	text-transform: uppercase;
+}
+.form-robots__main-form-top-phone input {
+	border: 1px solid #c5c5c5 !important;
+	background: #ffffff !important;
+	color: #333333 !important;
+	padding: 10px !important;
+}
+
+.form-robots__main-form-top-email {
+	display: inline-block;
+	width: 32%;
+}
+.form-robots__main-form-top-email label {
+	font-family: Verdana;
+	font-weight: 400;
+	text-transform: uppercase;
+}
+.form-robots__main-form-top-email input {
+	border: 1px solid #c5c5c5 !important;
+	background: #ffffff !important;
+	color: #333333 !important;
+	padding: 10px !important;
+}
+
+.form-robots__main-form-middle label {
+	font-family: Verdana;
+	font-weight: 400;
+	text-transform: uppercase;
+}
+
+.form-robots__main-form-bottom button {
+	padding: 10px 16px 12px;
+	background: #0473b7;
+	border: none;
+	width: 200px;
+	color: #fff;
+	cursor: pointer;
+	font-family: Verdana;
+	font-weight: 400;
+	font-size: 16px;
+	border-radius: 3px;
+}
+
+
+
+@media all and (max-width: 992px) {
+	.form-robots__price {
+		width: 100%;
+		margin-top: 30px;
+	}
+
+	.form-robots__img-link {
+		width: 22%;
+		margin-right: 2%;
+	}
+
+	.form-robots__count {
+		width: 16%;
+		margin-right: 2%;
+	}
+
+	.form-robots__count input {
+		padding: 4px 6px;
+	}
+
+	.form-robots__hours {
+		width: 27%;
+		margin-right: 2%;
+	}
+
+	.form-robots__days {
+		width: 10%;
+	}
+}
+
+@media all and (max-width: 767px) {
+	.form-robots__img-link {
+		width: 100%;
+	}
+
+	.form-robots__count {
+		width: 100%;
+	}
+
+	.form-robots__hours {
+		width: 100%;
+	}
+
+	.form-robots__days {
+		width: 100%;
+	}
+
+	.form-robots__rent, .form-robots__buy {
+		width: 48%;
+	}
+}
+
+@media all and (max-width: 576px) {
+	.form-robots__rent, .form-robots__buy {
+		width: 100%;
+	}
+	.form-robots__rent {
+		margin-right: 0;
+	}
+}
