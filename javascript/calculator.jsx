@@ -452,7 +452,7 @@ const TotalPrices = ({ control }) => {
             <div className="text-base">
               <span className="text-secondary">Включая</span>
               <div className="flex items-center gap-4 text-base">
-                <span className="hidden lg:inline">Стоимость логистики</span>
+                <span className="xs:hidden lg:inline">Стоимость логистики</span>
                 <span className="lg:hidden">Логистика</span>
                 <span className="block h-[6px] flex-1 border-b-4 border-dotted border-black"></span>
                 <span>
@@ -468,7 +468,7 @@ const TotalPrices = ({ control }) => {
                 </span>
               </div>
               <div className="flex items-center gap-4 text-base">
-                <span className="hidden lg:inline">Стоимость персонала</span>
+                <span className="xs:hidden lg:inline">Стоимость персонала</span>
                 <span className="lg:hidden">Персонал</span>
                 <span className="block h-[6px] flex-1 border-b-4 border-dotted border-black"></span>
                 <span>

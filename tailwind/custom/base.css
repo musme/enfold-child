@@ -12,3 +12,6 @@
  * editor.
 */
 
+.xs\:hidden {
+  @apply hidden
+}
