@@ -5,29 +5,14 @@
 		"color": {
 			"palette": [
 				{
-					"slug": "background",
-					"color": "#ffffff",
-					"name": "Background"
-				},
-				{
-					"slug": "foreground",
-					"color": "#404040",
-					"name": "Foreground"
-				},
-				{
 					"slug": "primary",
-					"color": "#b91c1c",
-					"name": "Primary"
+					"color": "#86cc55",
+					"name": "primary"
 				},
 				{
 					"slug": "secondary",
-					"color": "#15803d",
-					"name": "Secondary"
-				},
-				{
-					"slug": "tertiary",
-					"color": "#0369a1",
-					"name": "Tertiary"
+					"color": "#0473b7",
+					"name": "secondary"
 				}
 			]
 		},

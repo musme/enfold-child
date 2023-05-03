@@ -18,6 +18,9 @@ if ( ! defined( 'ITISTIME_VERSION' ) ) {
 // }
 
 wp_enqueue_script('app', get_theme_file_uri() . '/js/script.min.js', ['wp-element'], ITISTIME_VERSION, true);
+if(!is_admin()) {
+	wp_enqueue_style( 'app-styles', get_stylesheet_directory_uri() . '/styles.css', [], ITISTIME_VERSION, 'all' );
+}
 
 add_action('wp_ajax_send_mail', 'send_mail');
 add_action('wp_ajax_nopriv_send_mail', 'send_mail');

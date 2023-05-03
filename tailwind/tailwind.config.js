@@ -8,6 +8,7 @@ module.exports = {
 	],
 	content: [
 		// Ensure changes to PHP files and `theme.json` trigger a rebuild.
+		'./javascript/**/*.jsx',
 		'./theme/**/*.php',
 		'./theme/theme.json',
 	],

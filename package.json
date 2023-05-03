@@ -24,7 +24,7 @@
 		"tailwindcss": "^3.3.1"
 	},
 	"scripts": {
-		"development:tailwind:frontend": "npx tailwindcss --postcss -i ./tailwind/tailwind.css -c ./tailwind/tailwind.config.js -o ./theme/style.css",
+		"development:tailwind:frontend": "npx tailwindcss --postcss -i ./tailwind/tailwind.css -c ./tailwind/tailwind.config.js -o ./theme/styles.css",
 		"development:tailwind:editor": "cross-env _TW_TARGET=editor npx tailwindcss --postcss -i ./tailwind/tailwind.css -c ./tailwind/tailwind.config.js -o ./theme/style-editor.css",
 		"development:esbuild": "npx esbuild ./javascript/script.js ./javascript/block-editor.js --target=esnext --bundle --outdir=./theme/js --out-extension:.js=.min.js",
 		"development": "run-p development:**",
@@ -51,6 +51,9 @@
 	"dependencies": {
 		"@wordpress/element": "^5.8.0",
 		"qs": "^6.11.1",
-		"react-hook-form": "^7.43.9"
+		"react-countup": "^6.4.2",
+		"react-hook-form": "^7.43.9",
+		"react-number-format": "^5.1.4",
+		"tailwind-merge": "^1.12.0"
 	}
 }
