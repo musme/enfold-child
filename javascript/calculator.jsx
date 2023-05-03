@@ -144,7 +144,6 @@ const Calc = ({ data, url }) => {
                       name={`robots.${index}.count`}
                       render={({ field: { ref, onChange, name, value } }) => (
                         <NumericFormat
-                          type="number"
                           getInputRef={ref}
                           name={name}
                           value={value}
@@ -153,6 +152,9 @@ const Calc = ({ data, url }) => {
                           allowNegative={false}
                           decimalScale={0}
                           placeholder="0"
+                          isAllowed={(v) =>
+                            !v.floatValue || v.floatValue < 1000
+                          }
                         />
                       )}
                     />
@@ -164,7 +166,6 @@ const Calc = ({ data, url }) => {
                       name={`robots.${index}.days`}
                       render={({ field: { ref, onChange, name, value } }) => (
                         <NumericFormat
-                          type="number"
                           getInputRef={ref}
                           name={name}
                           value={value}
@@ -173,6 +174,9 @@ const Calc = ({ data, url }) => {
                           allowNegative={false}
                           decimalScale={0}
                           placeholder="0"
+                          isAllowed={(v) =>
+                            !v.floatValue || v.floatValue < 1000
+                          }
                         />
                       )}
                     />
@@ -220,6 +224,9 @@ const Calc = ({ data, url }) => {
                               decimalScale={0}
                               placeholder="0"
                               disabled
+                              isAllowed={(v) =>
+                                !v.floatValue || v.floatValue < 1000000
+                              }
                             />
                           )}
                         />
@@ -251,7 +258,6 @@ const Calc = ({ data, url }) => {
           name="distance"
           render={({ field: { ref, onChange, name, value } }) => (
             <NumericFormat
-              type="number"
               getInputRef={ref}
               name={name}
               value={value}
@@ -260,6 +266,7 @@ const Calc = ({ data, url }) => {
               allowNegative={false}
               decimalScale={0}
               placeholder="0"
+              isAllowed={(v) => !v.floatValue || v.floatValue < 100000}
             />
           )}
         />
