@@ -6,6 +6,7 @@
 *.min.js
 
 # Ignore generated CSS files:
+styles.css
 style.css
 style-editor.css
 
