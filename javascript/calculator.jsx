@@ -497,6 +497,7 @@ const getTotalPrices = (robots, distance) => {
     (acc, data) => {
       const rentPrice = getRentPrice(data, distance);
       const salePrice = getSalePrice(data);
+      const countInt = parseInt(data.count) || 0;
 
       const { staff_price, logistic_price } = data;
 
@@ -504,11 +505,13 @@ const getTotalPrices = (robots, distance) => {
       let additionalPriceForStaff = 0;
 
       if (rentPrice > 0 && logistic_price && distanceKm > 0) {
-        additionalPriceForKm = parseFloat(logistic_price) * distanceKm;
+        additionalPriceForKm =
+          (parseFloat(logistic_price) * distanceKm + 3000) * countInt;
       }
 
       if (rentPrice > 0 && staff_price && distanceKm > 0) {
-        additionalPriceForStaff += parseFloat(staff_price) * distanceKm;
+        additionalPriceForStaff +=
+          parseFloat(staff_price) * distanceKm * countInt;
       }
 
       acc.totalRentPrice +=
