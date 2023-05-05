@@ -280,7 +280,15 @@ const Calc = ({ data, url }) => {
         <h3 className="bg-secondary px-5 py-2 !text-white">Итого</h3>
         <div className="px-5 pb-5 pt-3">
           <div className="grid gap-6 lg:grid-cols-2">
-            <TotalPrices control={control} />
+            <div>
+              <TotalPrices control={control} />
+              <p className="py-5">
+                Данный расчёт является приблизительным, не является офертой и
+                акцептом по смыслу ст. 435, 438 ГК РФ и не накладывает на нашу
+                организацию никаких обязательств. Для уточнения стоимости просим
+                заполнить и направить нам данную форму.
+              </p>
+            </div>
             <div>
               {success && <div>ВАШ ЗАПРОС ОТПРАВЛЕН</div>}
               {!!error && <div>{error}</div>}
