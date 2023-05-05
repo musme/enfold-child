@@ -108,12 +108,14 @@ const Calc = ({ data, url }) => {
               key={robot.id}
               className="overflow-hidden rounded-lg border border-solid shadow-lg"
             >
-              <div className="relative flex max-h-[300px] min-h-[300px] w-full items-center justify-center border-b border-solid bg-gradient-to-b from-slate-300 to-slate-50">
-                <img
-                  src={robot.image}
-                  alt={robot.title}
-                  className="max-h-[300px] max-w-[300px]"
-                />
+              <div className="group relative flex max-h-[300px] min-h-[300px] w-full items-center justify-center border-b border-solid bg-gradient-to-b from-slate-300 to-slate-50">
+                <div className="overflow-hidden">
+                  <img
+                    src={robot.image}
+                    alt={robot.title}
+                    className="pointer-events-none max-h-[300px] max-w-[300px] scale-100 duration-500 group-hover:scale-110"
+                  />
+                </div>
                 <a
                   href={robot.link}
                   className="hover:bg-secondary absolute -bottom-6 right-5 flex items-center justify-center rounded-full border border-solid bg-white p-3 shadow-lg"
@@ -133,7 +135,7 @@ const Calc = ({ data, url }) => {
                 </a>
               </div>
               <div className="p-5">
-                <h3>{robot.title}</h3>
+                <h4>{robot.title}</h4>
                 <div className="grid grid-cols-3 gap-2">
                   <div>
                     <label className="text-secondary mb-2 block">
@@ -193,8 +195,11 @@ const Calc = ({ data, url }) => {
                   </div>
                 </div>
                 <div className="grid grid-cols-3 gap-2">
-                  <label className="text-secondary col-span-2 flex items-center">
+                  <label className="text-secondary xs:hidden col-span-2 items-center lg:flex">
                     Печать фотографий (10х15 см), шт.
+                  </label>
+                  <label className="text-secondary col-span-2 flex items-center lg:hidden">
+                    Печать фото (10х15 см), шт.
                   </label>
                   <div className="flex items-center">
                     {robot?.photo_price ? (
@@ -511,7 +516,7 @@ const getTotalPrices = (robots, distance) => {
 
       if (rentPrice > 0 && staff_price && distanceKm > 0) {
         additionalPriceForStaff +=
-          parseFloat(staff_price) * distanceKm * countInt;
+          (parseFloat(staff_price) * distanceKm + 1500) * countInt;
       }
 
       acc.totalRentPrice +=
