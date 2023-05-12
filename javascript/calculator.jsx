@@ -2,6 +2,7 @@ import { createRoot, useState, useEffect } from "@wordpress/element";
 import { useForm, useFieldArray, useWatch, Controller } from "react-hook-form";
 import { money } from "./utils";
 import { NumericFormat } from "react-number-format";
+import RobotDesc from "./RobotDesc";
 import CountUp from "react-countup";
 import qs from "qs";
 
@@ -46,7 +47,12 @@ const Calc = ({ data, url }) => {
     setError("");
     setLoading(true);
     const { robots, distance } = values;
-    const { totalRentPrice, totalSalePrice } = getTotalPrices(robots, distance);
+    const {
+      totalRentPrice,
+      totalSalePrice,
+      additionalPriceForKm,
+      additionalPriceForStaff,
+    } = getTotalPrices(robots, distance);
     const robotsWithPrices = [...robots].map((data) => {
       const rentPrice = getRentPrice(data);
       const salePrice = getSalePrice(data);
@@ -54,14 +60,21 @@ const Calc = ({ data, url }) => {
         ...data,
         rentPrice: money(rentPrice),
         salePrice: money(salePrice),
+        isSelected: !!rentPrice || !!salePrice,
       };
     });
 
     const data = {
       ...values,
-      robots: robotsWithPrices,
+      robots: robotsWithPrices.filter((r) => !!r.isSelected),
       totalRentPrice: money(totalRentPrice),
       totalSalePrice: money(totalSalePrice),
+      additionalPriceForKm: additionalPriceForKm
+        ? money(additionalPriceForKm)
+        : null,
+      additionalPriceForStaff: additionalPriceForStaff
+        ? money(additionalPriceForStaff)
+        : null,
     };
 
     try {
@@ -109,6 +122,10 @@ const Calc = ({ data, url }) => {
               className="overflow-hidden rounded-lg border border-solid shadow-lg"
             >
               <div className="group relative flex max-h-[300px] min-h-[300px] w-full items-center justify-center border-b border-solid bg-gradient-to-b from-slate-300 to-slate-50">
+                <a
+                  href={robot.link}
+                  className="noLightbox absolute inset-0"
+                ></a>
                 <div className="overflow-hidden">
                   <img
                     src={robot.image}
@@ -116,9 +133,18 @@ const Calc = ({ data, url }) => {
                     className="pointer-events-none max-h-[300px] max-w-[300px] scale-100 duration-500 group-hover:scale-110"
                   />
                 </div>
+                {!!robot.skills && (
+                  <div>
+                    <RobotDesc>
+                      {robot.skills.split("\n").map((skill, index) => {
+                        return <div key={index}>{skill}</div>;
+                      })}
+                    </RobotDesc>
+                  </div>
+                )}
                 <a
                   href={robot.link}
-                  className="hover:bg-secondary absolute -bottom-6 right-5 flex items-center justify-center rounded-full border border-solid bg-white p-3 shadow-lg"
+                  className="hover:bg-secondary absolute -bottom-6 right-5 flex items-center justify-center rounded-full border border-solid bg-white p-2 shadow-lg lg:p-3"
                   target="_blank"
                 >
                   <svg
@@ -135,7 +161,7 @@ const Calc = ({ data, url }) => {
                 </a>
               </div>
               <div className="p-5">
-                <h4>{robot.title}</h4>
+                <h4 className="mt-2 lg:mt-0">{robot.title}</h4>
                 <div className="grid grid-cols-3 gap-2">
                   <div>
                     <label className="text-secondary mb-2 block">
@@ -351,20 +377,6 @@ const Calc = ({ data, url }) => {
       </div>
     </form>
   );
-};
-
-const renderCalc = () => {
-  const calc = document.getElementById("robot-calc-react");
-  if (!!calc && calc.dataset.cfs && calc.dataset.url) {
-    try {
-      const root = createRoot(calc);
-      root.render(
-        <Calc data={JSON.parse(calc.dataset.cfs)} url={calc.dataset.url} />
-      );
-    } catch (error) {
-      console.error(error);
-    }
-  }
 };
 
 const RobotPrices = ({ control, name }) => {
@@ -598,6 +610,32 @@ const getRange = (arrayOfRanges = [], num) => {
   if (rangeIndex === -1) return 0;
 
   return parseInt(arrayOfRanges[rangeIndex].sconto ?? 0) ?? 0;
+};
+
+const renderCalc = () => {
+  const calc = document.getElementById("robot-calc-react");
+  if (!!calc && calc.dataset.cfs && calc.dataset.url) {
+    try {
+      const root = createRoot(calc);
+      root.render(
+        <Calc data={JSON.parse(calc.dataset.cfs)} url={calc.dataset.url} />
+      );
+    } catch (error) {
+      console.error(error);
+    }
+  }
+
+  const skills = document.querySelectorAll(".robot-skills-popover");
+  skills.forEach((el) => {
+    const root = createRoot(el);
+    root.render(
+      <RobotDesc>
+        {el.dataset.skills.split("\n").map((skill, index) => {
+          return <div key={index}>{skill}</div>;
+        })}
+      </RobotDesc>
+    );
+  });
 };
 
 export default renderCalc;

@@ -6,7 +6,7 @@ if ( ! defined( 'ITISTIME_LOCAL' ) ) {
 
 if ( ! defined( 'ITISTIME_VERSION' ) ) {
 	$theme = wp_get_theme();
-	$version = ITISTIME_LOCAL ? time() : '15';
+	$version = ITISTIME_LOCAL ? time() : '21';
 	define( 'ITISTIME_VERSION', $version );
 }
 
