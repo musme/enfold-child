@@ -7,7 +7,6 @@
 
 # Ignore generated CSS files:
 styles.css
-style.css
 style-editor.css
 
 # Ignore the generated zip file:

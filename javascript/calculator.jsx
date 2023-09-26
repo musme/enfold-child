@@ -580,20 +580,49 @@ const getRentPrice = (data) => {
   const daysInt = parseInt(days) || 0;
   const photoInt = parseInt(photo) || 0;
   const basePrice = data[`rent_${hours}`] ?? 0;
-  let price = 0;
 
-  if (daysInt > 0 && countInt > 0) {
-    price = basePrice * countInt * daysInt;
-    const scontoByDaysRange = getRange(sconto_by_days_rent, daysInt);
-    const scontoByItemsRange = getRange(sconto_by_items_rent, countInt);
-    const totalSconto = scontoByDaysRange + scontoByItemsRange;
-    price = price - (price * totalSconto) / 100;
-    if (photo_price) {
-      price += parseFloat(photo_price) * photoInt;
-    }
-  }
+	let totalPricesForDaysWithDiscounts = [];
 
-  return price;
+  for (let index = 0; index < daysInt; index++) {
+		const discount = getRange(sconto_by_days_rent, index + 1);
+
+		let dayBasePrice = basePrice - (basePrice * discount) / 100;
+
+		let totalPricesForQtyWithDiscounts = [];
+
+		for (let index = 0; index < countInt; index++) {
+			const discountByCount = getRange(sconto_by_items_rent, index + 1);
+			let robotPrice = dayBasePrice - (dayBasePrice * discountByCount) / 100;
+			totalPricesForQtyWithDiscounts.push(robotPrice);
+		}
+
+		let totalPrice = totalPricesForQtyWithDiscounts.reduce((acc, item) => {
+			return (acc += item);
+		}, 0);
+
+		const res = {
+			totalPrice,
+			index,
+			day: index + 1,
+			discount,
+			basePrice,
+			dayBasePrice,
+			qty: countInt,
+			robots: totalPricesForQtyWithDiscounts,
+		};
+
+		totalPricesForDaysWithDiscounts.push(res);
+	}
+
+	let rentValue = totalPricesForDaysWithDiscounts.reduce((acc, item) => {
+		return (acc += item.totalPrice);
+	}, 0);
+
+  if (!!rentValue && !!photo_price && Number(photo_price) > 0 && !!photoInt) {
+		rentValue += parseFloat(photo_price) * parseInt(photoInt);
+	}
+
+  return rentValue;
 };
 
 const getRange = (arrayOfRanges = [], num) => {
